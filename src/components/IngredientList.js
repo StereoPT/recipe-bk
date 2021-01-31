@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { GlobalContext } from '../context/GlobalState';
 import { Link } from 'react-router-dom';
 import {
   ListGroup,
@@ -7,15 +8,27 @@ import {
 } from 'reactstrap'; 
 
 export const IngredientList = () => {
+  const { ingredients, removeIngredient } = useContext(GlobalContext);
+
   return (
     <ListGroup className="mt-2">
-      <ListGroupItem className="d-flex">
-        <strong>Ingredient One</strong>
-        <div className="ml-auto">
-          <Link to="/edit/1" className="btn btn-warning mr-1">Edit</Link>
-          <Button color="danger">Delete</Button>
-        </div>
-      </ListGroupItem>
+      { ingredients.length > 0 ? (
+        <React.Fragment>
+          { ingredients.map((ingredient) => (
+            <ListGroupItem className="d-flex" key={ ingredient.id }>
+              <strong>{ ingredient.name }</strong>
+              <div className="ml-auto">
+                <Link to={ `/edit/${ingredient.id}` } className="btn btn-warning mr-1">Edit</Link>
+                <Button onClick={ () => removeIngredient(ingredient.id) } color="danger">Delete</Button>
+              </div>
+            </ListGroupItem>
+          )) }
+        </React.Fragment>
+      ) : (
+        <h4 className="text-center">
+          No Ingredients
+        </h4>
+      ) }
     </ListGroup>
   );
 }
