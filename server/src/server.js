@@ -5,7 +5,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const connectDB = require('./config/db')();
 
-const ingredientRoute = require('./routes/ingredientRoute');
+const ingredientRoutes = require('./routes/ingredientRoutes');
 const middlewares = require('./routes/middlewares');
 
 const server = express();
@@ -25,7 +25,7 @@ server.get('/', (req, res) => {
   });
 });
 
-server.use('/api/v1/ingredient', ingredientRoute);
+server.use('/api/v1/ingredients', ingredientRoutes);
 
 server.use(middlewares.notFound);
 server.use(middlewares.errorHandler);
