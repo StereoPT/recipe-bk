@@ -1,9 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 import { Link, useHistory } from 'react-router-dom';
-// This is Temporary.
-// TODO: After DB is Implemented will be REMOVED.
-import { v4 as uuid } from 'uuid';
 import {
   Form,
   FormGroup,
@@ -14,15 +11,12 @@ import {
 
 export const AddIngredient = () => {
   const [ name, setName ] = useState('');
-  const { addIngredient } = useContext(GlobalContext);
+  const { addOneIngredient } = useContext(GlobalContext);
   const history = useHistory();
 
   const onSubmit = () => {
-    const newIngredient = {
-      id: uuid(),
-      name
-    };
-    addIngredient(newIngredient);
+    const newIngredient = { name };
+    addOneIngredient(newIngredient);
 
     history.push('/');
   }

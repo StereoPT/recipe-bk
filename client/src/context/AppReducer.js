@@ -1,18 +1,20 @@
 export const AppReducer = (state, action) => {
   switch(action.type) {
-    case 'REMOVE_INGREDIENT':
+    case 'GET_ALL_INGREDIENTS': {
       return {
-        ingredients: state.ingredients.filter(ingredient => {
-          return ingredient.id !== action.payload
-        })
+        ...state,
+        loading: false,
+        ingredients: action.payload
       }
+    }
     
-    case 'ADD_INGREDIENT':
+    case 'ADD_INGREDIENT': {
       return {
-        ingredients: [action.payload, ...state.ingredients]
+        ingredients: [...state.ingredients, action.payload]
       }
+    }
     
-    case 'EDIT_INGREDIENT':
+    case 'EDIT_INGREDIENT': {
       const toUpdate = action.payload;
       const updatedIngredients = state.ingredients.map(ingredient => {
         return ingredient.id === toUpdate.id ? toUpdate : ingredient;
@@ -21,6 +23,17 @@ export const AppReducer = (state, action) => {
       return {
         ingredients: updatedIngredients
       }
+    }
+
+    case 'DELETE_ONE_INGREDIENT': {
+      return {
+        ingredients: state.ingredients.filter(ingredient => {
+          return ingredient._id !== action.payload
+        })
+      }
+    }
+
+    // TODO: Handle ERRORS
 
     default:
       return state;
