@@ -8,16 +8,16 @@ export const AppReducer = (state, action) => {
       }
     }
     
-    case 'ADD_INGREDIENT': {
+    case 'ADD_ONE_INGREDIENT': {
       return {
         ingredients: [...state.ingredients, action.payload]
       }
     }
     
-    case 'EDIT_INGREDIENT': {
+    case 'UPDATE_ONE_INGREDIENT': {
       const toUpdate = action.payload;
       const updatedIngredients = state.ingredients.map(ingredient => {
-        return ingredient.id === toUpdate.id ? toUpdate : ingredient;
+        return ingredient._id === toUpdate._id ? toUpdate : ingredient;
       });
 
       return {

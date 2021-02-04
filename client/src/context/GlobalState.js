@@ -2,6 +2,8 @@ import React, { createContext, useReducer } from 'react';
 import { AppReducer } from './AppReducer';
 import axios from 'axios';
 
+// TODO: Add Constant Types
+
 // Initial State
 const initialState = {
   ingredients: [ ],
@@ -40,7 +42,7 @@ export const GlobalProvider = ({ children }) => {
       const { data: ingredientAdded } = await axios.post('http://localhost:1337/api/v1/ingredients', ingredient, config);
 
       dispatch({
-        type: 'ADD_INGREDIENT',
+        type: 'ADD_ONE_INGREDIENT',
         payload: ingredientAdded.data
       });
     } catch (err) {
@@ -48,14 +50,22 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
-  const editIngredient = (ingredient) => {
-    dispatch({
-      type: 'EDIT_INGREDIENT',
-      payload: ingredient
-    })
+  const updateOneIngredient = async (ingredient) => {
+    const config = { headers: { 'Content-Type': 'application/json' } };
+
+    try {
+      const { data: ingredientUpdated } = await axios.put(`http://localhost:1337/api/v1/ingredients/${ingredient._id}`, ingredient, config);
+  
+      dispatch({
+        type: 'UPDATE_ONE_INGREDIENT',
+        payload: ingredientUpdated.data
+      });
+    } catch(err) {
+      console.error(err);
+    }
   }
 
-  // Delete All Ingredients
+  // TODO: Delete All Ingredients
 
   const deleteOneIngredient = async (id) => {
     try {
@@ -76,7 +86,7 @@ export const GlobalProvider = ({ children }) => {
       loading: state.loading,
       getAllIngredients,
       addOneIngredient,
-      editIngredient,
+      updateOneIngredient,
       deleteOneIngredient,
     }}>
       { children }

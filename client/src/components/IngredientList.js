@@ -13,7 +13,7 @@ export const IngredientList = () => {
   useEffect(() => {
     getAllIngredients();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [ ]);
 
   return (
     <ListGroup className="mt-2">

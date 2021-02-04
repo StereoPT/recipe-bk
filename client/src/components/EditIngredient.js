@@ -10,22 +10,24 @@ import {
 } from 'reactstrap';
 
 export const EditIngredient = (props) => {
-  const [ selectedIngredient, setSelectedIngredient ] = useState({
-    id: '', name: ''
-  });
-  const { ingredients, editIngredient } = useContext(GlobalContext);
   const history = useHistory();
   const currentIngredientID = props.match.params.id;
-
+  const { ingredients, updateOneIngredient } = useContext(GlobalContext);
+  const [ selectedIngredient, setSelectedIngredient ] = useState({
+    _id: '', name: ''
+  });
+  
   useEffect(() => {
     const ingredientID = currentIngredientID;
-    const selectedIngredient = ingredients.find(ingredient => ingredient.id === ingredientID);
+    const selectedIngredient = ingredients.find(ingredient => {
+      return ingredient._id === ingredientID
+    });
+
     setSelectedIngredient(selectedIngredient);
   }, [currentIngredientID, ingredients]);
 
   const onSubmit = () => {
-    editIngredient(selectedIngredient);
-
+    updateOneIngredient(selectedIngredient);
     history.push('/');
   }
 
