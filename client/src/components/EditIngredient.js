@@ -18,13 +18,17 @@ export const EditIngredient = (props) => {
   });
   
   useEffect(() => {
+    if(ingredients.length === 0) {
+      history.push('/');
+    }
+
     const ingredientID = currentIngredientID;
     const selectedIngredient = ingredients.find(ingredient => {
       return ingredient._id === ingredientID
     });
 
     setSelectedIngredient(selectedIngredient);
-  }, [currentIngredientID, ingredients]);
+  }, [currentIngredientID, ingredients, history]);
 
   const onSubmit = () => {
     updateOneIngredient(selectedIngredient);
