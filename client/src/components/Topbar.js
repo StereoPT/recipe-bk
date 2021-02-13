@@ -1,16 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAlignLeft } from "@fortawesome/free-solid-svg-icons";
 
-import {
+import { 
   Navbar,
-  NavbarBrand
+  Button
 } from 'reactstrap';
 
-export const Topbar = () => {
-
+export const Topbar = ({ toggleSidebar }) => {
   return (
     <Navbar color="light" light expand="md">
-      <Link to='/'><NavbarBrand>RecipeBK</NavbarBrand></Link>
+      <Button color="info" onClick={toggleSidebar}>
+        <FontAwesomeIcon icon={faAlignLeft} />
+      </Button>
     </Navbar>
   );
 }
