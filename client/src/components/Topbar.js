@@ -10,8 +10,8 @@ import {
 export const Topbar = ({ toggleSidebar }) => {
   return (
     <Navbar color="light" light expand="md">
-      <Button color="info" onClick={toggleSidebar}>
-        <FontAwesomeIcon icon={faAlignLeft} />
+      <Button color="info" onClick={ toggleSidebar }>
+        <FontAwesomeIcon icon={ faAlignLeft } />
       </Button>
     </Navbar>
   );

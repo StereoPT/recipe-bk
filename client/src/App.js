@@ -6,6 +6,8 @@ import classNames from 'classnames';
 import { Topbar } from './components/Topbar';
 import { DashboardPage } from './pages/DashboardPage';
 import { IngredientPage } from './pages/IngredientPage';
+import { AddIngredient } from './components/AddIngredient';
+import { EditIngredient } from './components/EditIngredient';
 import { RecipePage } from './pages/RecipePage';
 import { NotFound } from './pages/NotFound';
 
@@ -29,12 +31,12 @@ function App() {
               <Topbar toggleSidebar={ toggleSidebar } />
               <Switch>
                 <Route exact path="/" component={ DashboardPage } />
-                <Route path="/ingredients" component={ IngredientPage } />
+                <Route exact path="/ingredients" component={ IngredientPage } />
+                <Route path="/ingredients/add" component={ AddIngredient } />
+                <Route path="/ingredients/edit/:id" component={ EditIngredient } />
+
                 <Route path="/recipes" component={ RecipePage } />
-                {/*
-                <Route path="/add" component={ AddIngredient } />
-                <Route path="/edit/:id" component={ EditIngredient } />
-                */}
+
                 <Route component={ NotFound } />
               </Switch>
             </Container>
