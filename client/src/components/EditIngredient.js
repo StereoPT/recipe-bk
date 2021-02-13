@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 import { Link, useHistory } from 'react-router-dom';
 import {
+  Container,
   Form,
   FormGroup,
   Label,
@@ -32,7 +33,7 @@ export const EditIngredient = (props) => {
 
   const onSubmit = () => {
     updateOneIngredient(selectedIngredient);
-    history.push('/');
+    history.push('/ingredients');
   }
 
   const onChange = (e) => {
@@ -40,13 +41,18 @@ export const EditIngredient = (props) => {
   }
 
   return (
-    <Form onSubmit={ onSubmit }>
-      <FormGroup>
-        <Label>Ingredient Name</Label>
-        <Input type="text" name="name" onChange={ onChange } value={ selectedIngredient.name } placeholder="Ingredient Name" />
-      </FormGroup>
-      <Button type="submit">Edit Ingredient</Button>
-      <Link to="/" className="btn btn-danger ml-2">Cancel</Link>
-    </Form>
+    <>
+      <Container fluid className="d-flex justify-content-between align-items-center">
+        <h2 className="m-2">Edit Ingredient</h2>
+        <Button tag={ Link } to="/ingredients" color="danger">Back</Button>
+      </Container>
+      <Form className="m-3" onSubmit={ onSubmit }>
+        <FormGroup>
+          <Label>Ingredient Name:</Label>
+          <Input type="text" name="name" onChange={ onChange } value={ selectedIngredient.name } placeholder="Ingredient Name" />
+        </FormGroup>
+        <Button type="submit">Edit Ingredient</Button>
+      </Form>
+    </>
   );
 }

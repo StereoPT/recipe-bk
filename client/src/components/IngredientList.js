@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { GlobalContext } from '../context/GlobalState';
 import { Ingredient } from './Ingredient';
-import { Table, ListGroup } from 'reactstrap'; 
+import { ListGroup } from 'reactstrap'; 
 
 export const IngredientList = () => {
   const { ingredients, getAllIngredients, deleteOneIngredient } = useContext(GlobalContext);
