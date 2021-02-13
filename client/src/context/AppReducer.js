@@ -1,6 +1,8 @@
+import { Ingredients } from './Types';
+
 export const AppReducer = (state, action) => {
   switch(action.type) {
-    case 'GET_ALL_INGREDIENTS': {
+    case Ingredients.GET_ALL_INGREDIENTS: {
       return {
         ...state,
         loading: false,
@@ -8,13 +10,13 @@ export const AppReducer = (state, action) => {
       }
     }
     
-    case 'ADD_ONE_INGREDIENT': {
+    case Ingredients.ADD_ONE_INGREDIENT: {
       return {
         ingredients: [...state.ingredients, action.payload]
       }
     }
     
-    case 'UPDATE_ONE_INGREDIENT': {
+    case Ingredients.UPDATE_ONE_INGREDIENT: {
       const toUpdate = action.payload;
       const updatedIngredients = state.ingredients.map(ingredient => {
         return ingredient._id === toUpdate._id ? toUpdate : ingredient;
@@ -25,7 +27,7 @@ export const AppReducer = (state, action) => {
       }
     }
 
-    case 'DELETE_ONE_INGREDIENT': {
+    case Ingredients.DELETE_ONE_INGREDIENT: {
       return {
         ingredients: state.ingredients.filter(ingredient => {
           return ingredient._id !== action.payload

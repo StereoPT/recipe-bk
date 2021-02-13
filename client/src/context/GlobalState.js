@@ -1,8 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import { AppReducer } from './AppReducer';
+import { Ingredients } from './Types';
 import axios from 'axios';
-
-// TODO: Add Constant Types
 
 // Initial State
 const initialState = {
@@ -19,10 +18,11 @@ export const GlobalProvider = ({ children }) => {
 
   const getAllIngredients = async () => {
     try {
-      const { data: ingredients } = await axios.get('http://localhost:1337/api/v1/ingredients');
+      // const { data: ingredients } = await axios.get('http://localhost:1337/api/v1/ingredients');
+      const { data: ingredients } = await axios.get('http://192.168.1.7:1337/api/v1/ingredients');
 
       dispatch({
-        type: 'GET_ALL_INGREDIENTS',
+        type: Ingredients.GET_ALL_INGREDIENTS,
         payload: ingredients.data
       });
     } catch(err) {
@@ -39,10 +39,11 @@ export const GlobalProvider = ({ children }) => {
     const config = { headers: { 'Content-Type': 'application/json' } };
 
     try {
-      const { data: ingredientAdded } = await axios.post('http://localhost:1337/api/v1/ingredients', ingredient, config);
+      // const { data: ingredientAdded } = await axios.post('http://localhost:1337/api/v1/ingredients', ingredient, config);
+      const { data: ingredientAdded } = await axios.post('http://192.168.1.7:1337/api/v1/ingredients', ingredient, config);
 
       dispatch({
-        type: 'ADD_ONE_INGREDIENT',
+        type: Ingredients.ADD_ONE_INGREDIENT,
         payload: ingredientAdded.data
       });
     } catch (err) {
@@ -54,10 +55,11 @@ export const GlobalProvider = ({ children }) => {
     const config = { headers: { 'Content-Type': 'application/json' } };
 
     try {
-      const { data: ingredientUpdated } = await axios.put(`http://localhost:1337/api/v1/ingredients/${ingredient._id}`, ingredient, config);
-  
+      // const { data: ingredientUpdated } = await axios.put(`http://localhost:1337/api/v1/ingredients/${ingredient._id}`, ingredient, config);
+      const { data: ingredientUpdated } = await axios.put(`http://192.168.1.7:1337/api/v1/ingredients/${ingredient._id}`, ingredient, config);
+
       dispatch({
-        type: 'UPDATE_ONE_INGREDIENT',
+        type: Ingredients.UPDATE_ONE_INGREDIENT,
         payload: ingredientUpdated.data
       });
     } catch(err) {
@@ -69,10 +71,11 @@ export const GlobalProvider = ({ children }) => {
 
   const deleteOneIngredient = async (id) => {
     try {
-      await axios.delete(`http://localhost:1337/api/v1/ingredients/${id}`);
+      // await axios.delete(`http://localhost:1337/api/v1/ingredients/${id}`);
+      await axios.delete(`http://192.168.1.7:1337/api/v1/ingredients/${id}`);
 
       dispatch({
-        type: 'DELETE_ONE_INGREDIENT',
+        type: Ingredients.DELETE_ONE_INGREDIENT,
         payload: id
       });
     } catch(err) {
