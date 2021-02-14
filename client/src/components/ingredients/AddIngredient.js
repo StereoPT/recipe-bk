@@ -1,11 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { GlobalContext } from '../context/GlobalState';
+import { GlobalContext } from '../../context/GlobalState';
 import { Link, useHistory } from 'react-router-dom';
 import {
   Container,
   Form,
   FormGroup,
-  Label,
   Input,
   Button
 } from 'reactstrap';

@@ -6,8 +6,8 @@ import classNames from 'classnames';
 import { Topbar } from './components/Topbar';
 import { DashboardPage } from './pages/DashboardPage';
 import { IngredientPage } from './pages/IngredientPage';
-import { AddIngredient } from './components/AddIngredient';
-import { EditIngredient } from './components/EditIngredient';
+import { AddIngredient } from './components/ingredients/AddIngredient';
+import { EditIngredient } from './components/ingredients/EditIngredient';
 import { RecipePage } from './pages/RecipePage';
 import { NotFound } from './pages/NotFound';
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   Button, Container
 } from 'reactstrap';
-import { IngredientList } from '../components/IngredientList';
+import { IngredientList } from '../components/ingredients/IngredientList';
 
 export const IngredientPage = () => {
   return (

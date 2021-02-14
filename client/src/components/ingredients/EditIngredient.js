@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { GlobalContext } from '../context/GlobalState';
+import { GlobalContext } from '../../context/GlobalState';
 import { Link, useHistory } from 'react-router-dom';
 import {
   Container,
@@ -51,7 +51,7 @@ export const EditIngredient = (props) => {
           <Label>Ingredient Name:</Label>
           <Input type="text" name="name" onChange={ onChange } value={ selectedIngredient.name } placeholder="Ingredient Name" />
         </FormGroup>
-        <Button type="submit">Edit Ingredient</Button>
+        <Button color="info" type="submit">Edit Ingredient</Button>
       </Form>
     </>
   );

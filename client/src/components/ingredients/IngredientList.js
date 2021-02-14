@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { GlobalContext } from '../context/GlobalState';
+import { GlobalContext } from '../../context/GlobalState';
 import { Ingredient } from './Ingredient';
 import { ListGroup } from 'reactstrap'; 
 
