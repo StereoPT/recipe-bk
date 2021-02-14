@@ -6,6 +6,7 @@ const cors = require('cors');
 const connectDB = require('./config/db')();
 
 const ingredientRoutes = require('./routes/ingredientRoutes');
+const recipeRoutes = require('./routes/recipeRoutes');
 const middlewares = require('./routes/middlewares');
 
 const server = express();
@@ -23,7 +24,9 @@ const corsOptions = {
 
 server.use(morgan('common'));
 server.use(helmet());
-server.use(cors(corsOptions));
+server.use(cors({
+  origin: process.env.CORS_ORIGIN
+}));
 server.use(express.json());
 
 console.log('[Recipe-BK Server]');
@@ -35,6 +38,7 @@ server.get('/', (req, res) => {
 });
 
 server.use('/api/v1/ingredients', ingredientRoutes);
+server.use('/api/v1/recipes', recipeRoutes);
 
 server.use(middlewares.notFound);
 server.use(middlewares.errorHandler);
