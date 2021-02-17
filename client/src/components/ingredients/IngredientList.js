@@ -1,15 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { GlobalContext } from '../../context/GlobalState';
 import { Ingredient } from './Ingredient';
 import { ListGroup } from 'reactstrap'; 
 
 export const IngredientList = () => {
-  const { ingredients, getAllIngredients, deleteOneIngredient } = useContext(GlobalContext);
-
-  useEffect(() => {
-    getAllIngredients();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ ]);
+  const { ingredients, deleteOneIngredient } = useContext(GlobalContext);
 
   return (
     <ListGroup className="m-3">

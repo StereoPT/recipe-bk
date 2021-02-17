@@ -12,6 +12,7 @@ export const AppReducer = (state, action) => {
     
     case Ingredients.ADD_ONE_INGREDIENT: {
       return {
+        ...state,
         ingredients: [...state.ingredients, action.payload]
       }
     }
@@ -23,12 +24,14 @@ export const AppReducer = (state, action) => {
       });
 
       return {
+        ...state,
         ingredients: updatedIngredients
       }
     }
 
     case Ingredients.DELETE_ONE_INGREDIENT: {
       return {
+        ...state,
         ingredients: state.ingredients.filter(ingredient => {
           return ingredient._id !== action.payload
         })
@@ -45,6 +48,7 @@ export const AppReducer = (state, action) => {
 
     case Recipes.ADD_ONE_RECIPE: {
       return {
+        ...state,
         recipes: [...state.recipes, action.payload]
       }
     }
@@ -56,12 +60,14 @@ export const AppReducer = (state, action) => {
       });
 
       return {
+        ...state,
         recipes: updatedRecipes
       }
     }
 
     case Recipes.DELETE_ONE_RECIPE: {
       return {
+        ...state,
         recipes: state.recipes.filter(recipe => {
           return recipe._id !== action.payload
         })
