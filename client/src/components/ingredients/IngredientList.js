@@ -13,7 +13,7 @@ export const IngredientList = () => {
 
   return (
     <ListGroup className="m-3">
-      { ingredients.length > 0 ? (
+      { ingredients?.length > 0 ? (
         ingredients.map((ingredient) => (
           <Ingredient key={ ingredient._id } ingredient={ ingredient } deleteOneIngredient={ deleteOneIngredient } />
         ))

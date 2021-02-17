@@ -4,9 +4,7 @@ import {
   ListGroupItem, Button
 } from 'reactstrap'; 
 
-export const Ingredient = (props) => {
-  const { ingredient, deleteOneIngredient } = props;
-
+export const Ingredient = ({ ingredient, deleteOneIngredient }) => {
   return (
     <ListGroupItem className="d-flex align-items-center">
       <strong>{ ingredient.name }</strong>

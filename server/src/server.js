@@ -24,9 +24,7 @@ const corsOptions = {
 
 server.use(morgan('common'));
 server.use(helmet());
-server.use(cors({
-  origin: process.env.CORS_ORIGIN
-}));
+server.use(cors(corsOptions));
 server.use(express.json());
 
 console.log('[Recipe-BK Server]');
