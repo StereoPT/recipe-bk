@@ -12,7 +12,6 @@ import {
 
 export const EditIngredient = (props) => {
   const history = useHistory();
-  const currentIngredientID = props.match.params.id;
   const { ingredients, updateOneIngredient } = useContext(GlobalContext);
   const [ selectedIngredient, setSelectedIngredient ] = useState({
     _id: '', name: ''
@@ -23,21 +22,34 @@ export const EditIngredient = (props) => {
       history.push('/');
     }
 
-    const ingredientID = currentIngredientID;
-    const selectedIngredient = ingredients.find(ingredient => {
-      return ingredient._id === ingredientID
-    });
+    const currentIngredient = getIngredientFromID();
+    setSelectedIngredient(currentIngredient);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ ingredients, history ]);
 
-    setSelectedIngredient(selectedIngredient);
-  }, [currentIngredientID, ingredients, history]);
+  const onSubmit = (e) => {
+    e.preventDefault();
 
-  const onSubmit = () => {
-    updateOneIngredient(selectedIngredient);
-    history.push('/ingredients');
+    const oldIngredient = getIngredientFromID();
+
+    if(oldIngredient.name !== selectedIngredient.name) {
+      updateOneIngredient(selectedIngredient);
+      history.push('/ingredients');
+    } else {
+      // TODO: Better Error Message  -> Visible
+      console.error("Ingredient Name needs to be Different!");
+    } 
   }
 
   const onChange = (e) => {
-    setSelectedIngredient({...selectedIngredient, [e.target.name]: e.target.value });
+    setSelectedIngredient({ ...selectedIngredient, [e.target.name]: e.target.value });
+  }
+
+  const getIngredientFromID = () => {
+    const currentIngredientID = props.match.params.id;
+    return ingredients.find(ingredient => {
+      return ingredient._id === currentIngredientID
+    });
   }
 
   return (

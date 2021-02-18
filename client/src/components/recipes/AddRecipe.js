@@ -14,11 +14,17 @@ export const AddRecipe = () => {
   const { addOneRecipe } = useContext(GlobalContext);
   const history = useHistory();
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     const newRecipe = { name };
-    addOneRecipe(newRecipe);
 
-    history.push('/recipes');
+    if(name !== "") {
+      addOneRecipe(newRecipe);
+      history.push('/recipes');
+    } else {
+      // TODO: Better Error Message  -> Visible
+      console.error("Recipe Name Missing!");
+    }
   }
 
   const onChange = (e) => {

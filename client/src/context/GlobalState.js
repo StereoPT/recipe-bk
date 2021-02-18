@@ -125,14 +125,12 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
-  // TODO: Delete All Ingredients
-
   const deleteOneRecipe = async (id) => {
     try {
       await axios.delete(`http://${backendURL}:1337/api/v1/recipes/${id}`);
 
       dispatch({
-        type: Ingredients.DELETE_ONE_INGREDIENT,
+        type: Recipes.DELETE_ONE_RECIPE,
         payload: id
       });
     } catch(err) {

@@ -12,7 +12,6 @@ import {
 
 export const EditRecipe = (props) => {
   const history = useHistory();
-  const currentRecipeID = props.match.params.id;
   const { recipes, updateOneRecipe } = useContext(GlobalContext);
   const [ selectedRecipe, setSelectedRecipe ] = useState({
     _id: '', name: ''
@@ -23,21 +22,34 @@ export const EditRecipe = (props) => {
       history.push('/');
     }
 
-    const recipeID = currentRecipeID;
-    const selectedRecipe = recipes.find(recipe => {
-      return recipe._id === recipeID
-    });
+    const currentRecipe = getRecipeFromID();
+    setSelectedRecipe(currentRecipe);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ recipes, history ]);
 
-    setSelectedRecipe(selectedRecipe);
-  }, [currentRecipeID, recipes, history]);
+  const onSubmit = (e) => {
+    e.preventDefault();
 
-  const onSubmit = () => {
-    updateOneRecipe(selectedRecipe);
-    history.push('/ingredients');
+    const oldRecipe = getRecipeFromID();
+
+    if(oldRecipe.name !== selectedRecipe.name) {
+      updateOneRecipe(selectedRecipe);
+      history.push('/recipes');
+    } else {
+      // TODO: Better Error Message  -> Visible
+      console.error("Recipe Name needs to be Different!");
+    }
   }
 
   const onChange = (e) => {
-    setSelectedRecipe({...selectedRecipe, [e.target.name]: e.target.value });
+    setSelectedRecipe({ ...selectedRecipe, [e.target.name]: e.target.value });
+  }
+
+  const getRecipeFromID = () => {
+    const currentRecipeID = props.match.params.id;
+    return recipes.find(recipe => {
+      return recipe._id === currentRecipeID
+    });
   }
 
   return (

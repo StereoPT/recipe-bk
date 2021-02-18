@@ -42,7 +42,7 @@ const updateOneRecipe = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { name: newName } = req.body;
-    const recipeUpdated = await Recipe.findByIdAndUpdate(id, { name: newname }, { new: true });
+    const recipeUpdated = await Recipe.findByIdAndUpdate(id, { name: newName }, { new: true });
 
     return res.json({
       data: recipeUpdated

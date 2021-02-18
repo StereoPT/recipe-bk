@@ -19,7 +19,7 @@ export const DashboardPage = () => {
     <>
       <Container fluid>
         <h2 className="m-2">Dashboard</h2>
-        <Row>
+        <Row className="mt-4">
           <Col sm="6">
             <Card body>
               <CardTitle tag="h5">Recipes</CardTitle>

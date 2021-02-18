@@ -14,11 +14,17 @@ export const AddIngredient = () => {
   const { addOneIngredient } = useContext(GlobalContext);
   const history = useHistory();
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     const newIngredient = { name };
-    addOneIngredient(newIngredient);
 
-    history.push('/ingredients');
+    if(name !== "") {
+      addOneIngredient(newIngredient);
+      history.push('/ingredients');
+    } else {
+      // TODO: Better Error Message  -> Visible
+      console.error("Ingredient Name Missing!");
+    }
   }
 
   const onChange = (e) => {
