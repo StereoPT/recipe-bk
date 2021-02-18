@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faTachometerAlt,
   faUtensils,
   faListUl
 } from '@fortawesome/free-solid-svg-icons';
@@ -23,6 +24,12 @@ export const Sidebar = ({ isOpen, toggle }) => {
       </div>
       <div className="side-menu">
         <Nav vertical className="list-unstyled pb-3">
+          <NavItem>
+            <NavLink tag={ Link } to={ "/" }>
+              <FontAwesomeIcon icon={ faTachometerAlt } className="mr-2" />
+              Dashboard
+            </NavLink>
+          </NavItem>
           <NavItem>
             <NavLink tag={ Link } to={ "/recipes" }>
               <FontAwesomeIcon icon={ faUtensils } className="mr-2" />

@@ -15,12 +15,12 @@ export const GlobalContext = createContext(initialState);
 
 // Provider Component
 export const GlobalProvider = ({ children }) => {
+  const backendURL = window.location.hostname;
   const [ state, dispatch ] = useReducer(AppReducer, initialState);
 
   const getAllIngredients = async () => {
     try {
-      // const { data: ingredients } = await axios.get('http://localhost:1337/api/v1/ingredients');
-      const { data: ingredients } = await axios.get('http://192.168.1.7:1337/api/v1/ingredients');
+      const { data: ingredients } = await axios.get(`http://${backendURL}:1337/api/v1/ingredients`);
 
       dispatch({
         type: Ingredients.GET_ALL_INGREDIENTS,
@@ -40,8 +40,7 @@ export const GlobalProvider = ({ children }) => {
     const config = { headers: { 'Content-Type': 'application/json' } };
 
     try {
-      // const { data: ingredientAdded } = await axios.post('http://localhost:1337/api/v1/ingredients', ingredient, config);
-      const { data: ingredientAdded } = await axios.post('http://192.168.1.7:1337/api/v1/ingredients', ingredient, config);
+      const { data: ingredientAdded } = await axios.post(`http://${backendURL}:1337/api/v1/ingredients`, ingredient, config);
 
       dispatch({
         type: Ingredients.ADD_ONE_INGREDIENT,
@@ -56,8 +55,7 @@ export const GlobalProvider = ({ children }) => {
     const config = { headers: { 'Content-Type': 'application/json' } };
 
     try {
-      // const { data: ingredientUpdated } = await axios.put(`http://localhost:1337/api/v1/ingredients/${ingredient._id}`, ingredient, config);
-      const { data: ingredientUpdated } = await axios.put(`http://192.168.1.7:1337/api/v1/ingredients/${ingredient._id}`, ingredient, config);
+      const { data: ingredientUpdated } = await axios.put(`http://${backendURL}:1337/api/v1/ingredients/${ingredient._id}`, ingredient, config);
 
       dispatch({
         type: Ingredients.UPDATE_ONE_INGREDIENT,
@@ -72,8 +70,7 @@ export const GlobalProvider = ({ children }) => {
 
   const deleteOneIngredient = async (id) => {
     try {
-      // await axios.delete(`http://localhost:1337/api/v1/ingredients/${id}`);
-      await axios.delete(`http://192.168.1.7:1337/api/v1/ingredients/${id}`);
+      await axios.delete(`http://${backendURL}:1337/api/v1/ingredients/${id}`);
 
       dispatch({
         type: Ingredients.DELETE_ONE_INGREDIENT,
@@ -86,8 +83,7 @@ export const GlobalProvider = ({ children }) => {
 
   const getAllRecipes = async () => {
     try {
-      // const { data: recipes } = await axios.get('http://localhost:1337/api/v1/recipes');
-      const { data: recipes } = await axios.get('http://192.168.1.7:1337/api/v1/recipes');
+      const { data: recipes } = await axios.get(`http://${backendURL}:1337/api/v1/recipes`);
 
       dispatch({
         type: Recipes.GET_ALL_RECIPES,
@@ -103,8 +99,7 @@ export const GlobalProvider = ({ children }) => {
     const config = { headers: { 'Content-Type': 'application/json' } };
 
     try {
-      // const { data: recipeAdded } = await axios.post('http://localhost:1337/api/v1/recipes', recipe, config);
-      const { data: recipeAdded } = await axios.post('http://192.168.1.7:1337/api/v1/recipes', recipe, config);
+      const { data: recipeAdded } = await axios.post(`http://${backendURL}:1337/api/v1/recipes`, recipe, config);
 
       dispatch({
         type: Recipes.ADD_ONE_RECIPE,
@@ -119,8 +114,7 @@ export const GlobalProvider = ({ children }) => {
     const config = { headers: { 'Content-Type': 'application/json' } };
 
     try {
-      // const { data: recipeUpdated } = await axios.put(`http://localhost:1337/api/v1/recipes/${recipe._id}`, recipe, config);
-      const { data: recipeUpdated } = await axios.put(`http://192.168.1.7:1337/api/v1/recipes/${recipe._id}`, recipe, config);
+      const { data: recipeUpdated } = await axios.put(`http://${backendURL}:1337/api/v1/recipes/${recipe._id}`, recipe, config);
 
       dispatch({
         type: Recipes.UPDATE_ONE_RECIPE,
@@ -135,8 +129,7 @@ export const GlobalProvider = ({ children }) => {
 
   const deleteOneRecipe = async (id) => {
     try {
-      // await axios.delete(`http://localhost:1337/api/v1/recipes/${id}`);
-      await axios.delete(`http://192.168.1.7:1337/api/v1/recipes/${id}`);
+      await axios.delete(`http://${backendURL}:1337/api/v1/recipes/${id}`);
 
       dispatch({
         type: Ingredients.DELETE_ONE_INGREDIENT,
