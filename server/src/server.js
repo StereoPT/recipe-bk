@@ -11,7 +11,7 @@ const middlewares = require('./routes/middlewares');
 
 const server = express();
 
-const whitelist = [process.env.CORS_ORIGIN, 'http://192.168.1.7:3000'];
+const whitelist = [process.env.CORS_ORIGIN, 'http://192.168.1.8:3000'];
 const corsOptions = {
   origin: function(origin, cb) {
     if(whitelist.indexOf(origin) !== -1) {

@@ -20,7 +20,7 @@ import { NotFound } from '../pages/NotFound';
 import { GlobalContext } from '../context/GlobalState';
 
 export const Content = ({ sidebarIsOpen, toggleSidebar }) => {
-  const { getAllIngredients, getAllRecipes } = useContext(GlobalContext);
+  const { getAllIngredients, getAllRecipes  } = useContext(GlobalContext);
 
   useEffect(() => {
     getAllIngredients();
