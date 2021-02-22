@@ -4,7 +4,8 @@ import { Recipe } from './Recipe';
 import { ListGroup } from 'reactstrap';
 
 export const RecipeList = () => {
-  const { recipes, deleteOneRecipe } = useContext(GlobalContext);
+  const { recipeReducer, deleteOneRecipe } = useContext(GlobalContext);
+  const { recipes } = recipeReducer;
 
   return (
     <ListGroup className="m-3">

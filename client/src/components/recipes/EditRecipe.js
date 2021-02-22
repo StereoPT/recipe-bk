@@ -12,7 +12,8 @@ import {
 
 export const EditRecipe = (props) => {
   const history = useHistory();
-  const { recipes, updateOneRecipe } = useContext(GlobalContext);
+  const { recipeReducer, updateOneRecipe } = useContext(GlobalContext);
+  const { recipes } = recipeReducer;
   const [ selectedRecipe, setSelectedRecipe ] = useState({
     _id: '', name: ''
   });

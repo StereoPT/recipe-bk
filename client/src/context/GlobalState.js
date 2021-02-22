@@ -1,15 +1,26 @@
 import React, { createContext, useReducer } from 'react';
-import { AppReducer } from './AppReducer';
-import { Ingredients, Recipes } from './Types';
+import combineReducers from 'react-combine-reducers';
+import { ingredientReducer } from './IngredientReducer';
+import { recipeReducer } from './RecipeReducer';
+import { Ingredients, Recipes } from './Actions';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
 
 // Initial State
-const initialState = {
+const initialIngredientState = {
   ingredients: [ ],
-  recipes: [ ],
-  loading: true
+  loading: true,
 };
+
+const initialRecipeState = {
+  recipes: [ ],
+  loading: true,
+};
+
+const initialState = {
+  ingredientReducer: initialIngredientState,
+  recipeReducer: initialRecipeState,
+}
 
 // Create Context
 export const GlobalContext = createContext(initialState);
@@ -17,13 +28,19 @@ export const GlobalContext = createContext(initialState);
 // Provider Component
 export const GlobalProvider = ({ children }) => {
   const backendURL = window.location.hostname;
-  const [ state, dispatch ] = useReducer(AppReducer, initialState);
+
+  const [ rootReducer, initialStateCombined ] = combineReducers({
+    ingredientReducer: [ ingredientReducer, initialIngredientState ],
+    recipeReducer: [ recipeReducer, initialRecipeState ],
+  });
+  
+  const [ state, dispatch ] = useReducer(rootReducer, initialStateCombined);
 
   const getAllIngredients = async () => {
     try {
       const { data: ingredients } = await axios.get(`http://${backendURL}:1337/api/v1/ingredients`);
       cogoToast.success('Ingredients Fetched!', { position: 'top-right' });
-
+      
       dispatch({
         type: Ingredients.GET_ALL_INGREDIENTS,
         payload: ingredients.data
@@ -157,17 +174,10 @@ export const GlobalProvider = ({ children }) => {
 
   return (
     <GlobalContext.Provider value={{
-      ingredients: state.ingredients,
-      recipes: state.recipes,
-      loading: state.loading,
-      getAllIngredients,
-      addOneIngredient,
-      updateOneIngredient,
-      deleteOneIngredient,
-      getAllRecipes,
-      addOneRecipe,
-      updateOneRecipe,
-      deleteOneRecipe,
+      ingredientReducer: state.ingredientReducer,
+      getAllIngredients, addOneIngredient, updateOneIngredient, deleteOneIngredient,
+      recipeReducer: state.recipeReducer,
+      getAllRecipes, addOneRecipe, updateOneRecipe, deleteOneRecipe,
     }}>
       { children }
     </GlobalContext.Provider>

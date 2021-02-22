@@ -13,7 +13,9 @@ import {
 import { GlobalContext } from '../context/GlobalState';
 
 export const DashboardPage = () => {
-  const { ingredients, recipes } = useContext(GlobalContext);
+  const { ingredientReducer, recipeReducer } = useContext(GlobalContext);
+  const { ingredients, loading: iLoading } = ingredientReducer;
+  const { recipes, loading: rLoading } = recipeReducer;
 
   return (
     <>
@@ -23,14 +25,14 @@ export const DashboardPage = () => {
           <Col sm="6">
             <Card body>
               <CardTitle tag="h5">Recipes</CardTitle>
-              <CardText>At the moment you have <strong>{ recipes.length }</strong> Recipes.</CardText>
+              <CardText>At the moment you have <strong>{ recipes?.length }</strong> Recipes.</CardText>
               <Button tag={ Link } to="recipes" color="info">Check Recipes</Button>
             </Card>
           </Col>
           <Col sm="6">
             <Card body>
               <CardTitle tag="h5">Ingredients</CardTitle>
-              <CardText>At the moment you have <strong>{ ingredients.length }</strong> Ingredients.</CardText>
+              <CardText>At the moment you have <strong>{ ingredients?.length }</strong> Ingredients.</CardText>
               <Button tag={ Link } to="ingredients" color="info">Check Ingredients</Button>
             </Card>
           </Col>

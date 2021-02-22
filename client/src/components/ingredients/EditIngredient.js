@@ -12,7 +12,8 @@ import {
 
 export const EditIngredient = (props) => {
   const history = useHistory();
-  const { ingredients, updateOneIngredient } = useContext(GlobalContext);
+  const { ingredientReducer, updateOneIngredient } = useContext(GlobalContext);
+  const { ingredients } = ingredientReducer;
   const [ selectedIngredient, setSelectedIngredient ] = useState({
     _id: '', name: ''
   });
