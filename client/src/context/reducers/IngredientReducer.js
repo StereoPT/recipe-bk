@@ -1,4 +1,4 @@
-import { Ingredients } from './Actions';
+import { Ingredients } from '../Actions';
 
 export const ingredientReducer = (state, action) => {
   switch(action.type) {

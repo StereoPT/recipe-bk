@@ -14,8 +14,8 @@ import { GlobalContext } from '../context/GlobalState';
 
 export const DashboardPage = () => {
   const { ingredientReducer, recipeReducer } = useContext(GlobalContext);
-  const { ingredients, loading: iLoading } = ingredientReducer;
-  const { recipes, loading: rLoading } = recipeReducer;
+  const { ingredients } = ingredientReducer;
+  const { recipes } = recipeReducer;
 
   return (
     <>

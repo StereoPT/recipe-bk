@@ -1,4 +1,4 @@
-import { Recipes } from './Actions';
+import { Recipes } from '../Actions';
 
 export const recipeReducer = (state, action) => {
   switch(action.type) {

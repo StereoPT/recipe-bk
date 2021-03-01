@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import combineReducers from 'react-combine-reducers';
-import { ingredientReducer } from './IngredientReducer';
-import { recipeReducer } from './RecipeReducer';
+import { ingredientReducer } from './reducers/IngredientReducer';
+import { recipeReducer } from './reducers/RecipeReducer';
 import { Ingredients, Recipes } from './Actions';
 import axios from 'axios';
 import cogoToast from 'cogo-toast';
